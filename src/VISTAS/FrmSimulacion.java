@@ -1,16 +1,34 @@
 
 package VISTAS;
 
+import CLASES.Moto;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
 
 
 public class FrmSimulacion extends javax.swing.JFrame {
 
 
+     private Moto[] motos;
     
     public FrmSimulacion() {
-       initComponents();
-     
+        initComponents();
+        motos = new Moto[3];
+        motos[0] = new Moto(MOTO1, MOTO1.getX(), getWidth() - MOTO1.getWidth());
+        motos[1] = new Moto(MOTO2, MOTO2.getX(), getWidth() - MOTO2.getWidth());
+        motos[2] = new Moto(MOTO3, MOTO3.getX(), getWidth() - MOTO3.getWidth());
     }
+    
+    private void moveMotorcyclesWithThreads() {
+        for (Moto moto : motos) {
+            moto.start();
+        }
+    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -169,20 +187,20 @@ public class FrmSimulacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnenviartodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnenviartodoActionPerformed
-
+moveMotorcyclesWithThreads();
     }//GEN-LAST:event_BtnenviartodoActionPerformed
 
     private void Btnenviarm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm1ActionPerformed
-    
+      motos[0].start();
     }//GEN-LAST:event_Btnenviarm1ActionPerformed
 
     private void Btnenviarm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm2ActionPerformed
-     
+      motos[1].start();  
     }//GEN-LAST:event_Btnenviarm2ActionPerformed
 
     private void Btnenviarm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm3ActionPerformed
     
-    
+    motos[2].start();
     }//GEN-LAST:event_Btnenviarm3ActionPerformed
 
 

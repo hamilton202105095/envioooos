@@ -377,12 +377,14 @@ pedidoActual.setVehiculoAsignado(vehiculo);
 }
     private void BtnirasimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnirasimulacionActionPerformed
         
-      this.mostrarTodosLosPedidos();
-          FrmSimulacion simulacion = new FrmSimulacion();
-        simulacion.setVisible(true);
-        this.dispose();    
+     this.mostrarTodosLosPedidos(); // Muestra los pedidos registrados
+    FrmSimulacion simulacion = new FrmSimulacion();
+    simulacion.recibirPedidos(listaDePedidos); // Envía los pedidos a la simulación
+    simulacion.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_BtnirasimulacionActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

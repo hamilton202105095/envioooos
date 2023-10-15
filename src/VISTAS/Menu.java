@@ -21,7 +21,10 @@ public class Menu extends javax.swing.JFrame {
         this.recuperarProductos();
         
           this.mostrarProductos(); 
-          this.configurarCabecerasTabla();  
+          this.configurarCabecerasTabla(); 
+          
+           frmSimulacion = new FrmSimulacion();
+        frmSimulacion.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +47,7 @@ public class Menu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         Lbltotal = new javax.swing.JLabel();
         Btnirasimulacion = new javax.swing.JButton();
+        Btnabrirhistorial = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +128,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        Btnabrirhistorial.setText("Historial");
+        Btnabrirhistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnabrirhistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,9 +175,11 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Btnconfirmarp)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Btnirasimulacion, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                    .addComponent(Btnabrirhistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Btnconfirmarp)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Btnirasimulacion, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                 .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
@@ -201,7 +214,9 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(Btnirasimulacion)))
-                .addGap(42, 42, 42))
+                .addGap(18, 18, 18)
+                .addComponent(Btnabrirhistorial)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -358,11 +373,21 @@ pedidoActual.setVehiculoAsignado(vehiculo);
     motosUtilizadas.add(vehiculo);
     // Limpiar la tabla de pedidos
     modelPedido.setRowCount(0);
+    
+  for (Moto moto : frmSimulacion.getMotos()) {
+        if (moto.getPedidoAsignado() == null) {
+            moto.setPedidoAsignado(pedidoActual);
+            pedidoActual.setVehiculoAsignado(moto.getNombre());
+            break; // Asigna la primera motocicleta disponible y rompe el bucle.
+        }
+    }
+
     // Mensaje de confirmación
     JOptionPane.showMessageDialog(null, "Pedido confirmado y guardado.");
     
     }//GEN-LAST:event_BtnconfirmarpActionPerformed
 
+    
     public void mostrarTodosLosPedidos() {
     int numPedidos = listaDePedidos.size();
     System.out.println("Hay " + numPedidos + " pedidos registrados.");
@@ -377,12 +402,21 @@ pedidoActual.setVehiculoAsignado(vehiculo);
 }
     private void BtnirasimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnirasimulacionActionPerformed
         
-     this.mostrarTodosLosPedidos(); // Muestra los pedidos registrados
-    FrmSimulacion simulacion = new FrmSimulacion();
-    simulacion.recibirPedidos(listaDePedidos); // Envía los pedidos a la simulación
-    simulacion.setVisible(true);
-    this.dispose();
+      this.mostrarTodosLosPedidos();
+          if (!frmSimulacion.isVisible()) {
+            frmSimulacion.setVisible(true);
+        }
+        this.dispose();    
     }//GEN-LAST:event_BtnirasimulacionActionPerformed
+
+    private void BtnabrirhistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnabrirhistorialActionPerformed
+        // Crear una instancia de Frmhistorial y pasar el historial de pedidos
+    Frmhistorial frmHistorial = new Frmhistorial();
+
+    // Hacer que la ventana Frmhistorial sea visible
+    frmHistorial.setVisible(true);
+    this.dispose(); 
+    }//GEN-LAST:event_BtnabrirhistorialActionPerformed
 
     
     /**
@@ -421,6 +455,7 @@ pedidoActual.setVehiculoAsignado(vehiculo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btnabrirhistorial;
     private javax.swing.JButton Btnaggapedido;
     private javax.swing.JButton Btnconfirmarp;
     private javax.swing.JButton Btnirasimulacion;

@@ -1,33 +1,28 @@
 
 package VISTAS;
 
+import CLASES.HistorialP;
 import CLASES.Moto;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JLabel;
-import javax.swing.Timer;
-
-
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class FrmSimulacion extends javax.swing.JFrame {
-
-
      private Moto[] motos;
+     
     
     public FrmSimulacion() {
         initComponents();
-        motos = new Moto[3];
-        motos[0] = new Moto(MOTO1, MOTO1.getX(), getWidth() - MOTO1.getWidth());
-        motos[1] = new Moto(MOTO2, MOTO2.getX(), getWidth() - MOTO2.getWidth());
-        motos[2] = new Moto(MOTO3, MOTO3.getX(), getWidth() - MOTO3.getWidth());
+   motos     = new Moto[3];
+motos[0] = new Moto(MOTO1, MOTO1.getX(), getWidth() - MOTO1.getWidth(), "MOTO1");
+motos[1] = new Moto(MOTO2, MOTO2.getX(), getWidth() - MOTO2.getWidth(), "MOTO2");
+motos[2] = new Moto(MOTO3, MOTO3.getX(), getWidth() - MOTO3.getWidth(), "MOTO3");
+
     }
-    
-    private void moveMotorcyclesWithThreads() {
-        for (Moto moto : motos) {
-            moto.start();
-        }
+
+
+    public Moto[] getMotos() {
+        return motos;
     }
-    
     
 
     @SuppressWarnings("unchecked")
@@ -187,20 +182,38 @@ public class FrmSimulacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnenviartodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnenviartodoActionPerformed
-moveMotorcyclesWithThreads();
+for (Moto moto : motos) {
+        if (moto.getPedidoAsignado() != null) {
+            moto.start();
+        }
+    }
     }//GEN-LAST:event_BtnenviartodoActionPerformed
 
     private void Btnenviarm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm1ActionPerformed
-      motos[0].start();
+       if (motos[0].getPedidoAsignado() != null) {
+        motos[0].start();
+    } else {
+        // Maneja la situación en la que la moto no tiene un pedido asignado
+        JOptionPane.showMessageDialog(null, "No hay un pedido asignado a esta moto.");
+    }
     }//GEN-LAST:event_Btnenviarm1ActionPerformed
 
     private void Btnenviarm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm2ActionPerformed
-      motos[1].start();  
+     if (motos[1].getPedidoAsignado() != null) {
+        motos[1].start();
+    } else {
+        // Maneja la situación en la que la moto no tiene un pedido asignado
+        JOptionPane.showMessageDialog(null, "No hay un pedido asignado a esta moto.");
+    }  
     }//GEN-LAST:event_Btnenviarm2ActionPerformed
 
     private void Btnenviarm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnenviarm3ActionPerformed
-    
-    motos[2].start();
+    if (motos[2].getPedidoAsignado() != null) {
+        motos[2].start();
+    } else {
+        // Maneja la situación en la que la moto no tiene un pedido asignado
+        JOptionPane.showMessageDialog(null, "No hay un pedido asignado a esta moto.");
+    }
     }//GEN-LAST:event_Btnenviarm3ActionPerformed
 
 

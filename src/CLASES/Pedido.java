@@ -12,6 +12,7 @@ public class Pedido implements Serializable {
     private double distancia;
     private double total;
     private String vehiculoAsignado;
+    
 
  private boolean entregado = false;
 

@@ -70,6 +70,7 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="Btnabrirhistorial" pref="150" max="32767" attributes="0"/>
                   <Component id="Btnconfirmarp" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton3" max="32767" attributes="0"/>
                   <Component id="Btnirasimulacion" alignment="0" pref="150" max="32767" attributes="0"/>
@@ -117,7 +118,9 @@
                       <Component id="Btnirasimulacion" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="Btnabrirhistorial" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -265,6 +268,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnirasimulacionActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Btnabrirhistorial">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Historial"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnabrirhistorialActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
